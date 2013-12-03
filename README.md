@@ -1,16 +1,21 @@
 IBAN Generator
 ==============
 
-With this class you can generate simply a IBAN from Bankcode, Bankaccount Id and
+[![Build Status](https://travis-ci.org/bmatzner/iban-generator.png?branch=master)](https://travis-ci.org/bmatzner/iban-generator)
+
+With this class you can generate simply a IBAN from Bankcode, Bank Account Number and
 locale.
 
 Currently only for Germany...
+
 Further description for other languages http://www.pruefziffernberechnung.de/I/IBAN.shtml
+
+Work in progress
 
 Example
 -------
 
-    $IBANGenerator = new Generator\Iban($bankCode, $bankAccountNr, $locale);
+    $IBANGenerator = new IbanGenerator\Generator($bankCode, $bankAccountNr, $locale);
     $IBANGenerator->generate();
 
 Check
