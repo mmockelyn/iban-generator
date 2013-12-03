@@ -10,7 +10,7 @@ Further description for other languages http://www.pruefziffernberechnung.de/I/I
 Example
 -------
 
-    $IBANGenerator = new IBANGenerator($bankCode, $bankAccountNr, $locale);
+    $IBANGenerator = new Generator\Iban($bankCode, $bankAccountNr, $locale);
     $IBANGenerator->generate();
 
 Check
