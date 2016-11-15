@@ -3,8 +3,9 @@
 namespace IbanGenerator;
 
 /**
- * IbanGenerator
+ * IbanGenerator.
  *
+ * @package IbanGenerator
  */
 class Generator
 {
@@ -24,7 +25,7 @@ class Generator
     protected $bankAccountNr;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $bankCode
      * @param string $bankAccountNr
@@ -38,7 +39,7 @@ class Generator
     }
 
     /**
-     * Generate the IBAN Code
+     * Generate the IBAN Code.
      *
      * @param string $bankCode
      * @param string $bankAccountNr
@@ -65,11 +66,11 @@ class Generator
         $checkcipher = $this->getCheckcipher($checksum);
 
         // the ready IBAN ;)
-        return $locale . $checkcipher . $bban;
+        return $locale.$checkcipher.$bban;
     }
 
     /**
-     * Get the bban from Bank Code and Account Identification Number
+     * Get the bban from Bank Code and Account Identification Number.
      *
      * @param string $bankCode
      * @param string $bankAccountNr
@@ -81,15 +82,16 @@ class Generator
         if (empty($bankCode)) {
             $bankCode = $this->bankCode;
         }
+
         if (empty($bankAccountNr)) {
             $bankAccountNr = $this->bankAccountNr;
         }
 
-        return $bankCode . str_pad($bankAccountNr, 10, "0", STR_PAD_LEFT);
+        return $bankCode.str_pad($bankAccountNr, 10, '0', STR_PAD_LEFT);
     }
 
     /**
-     * Get Checksum for IBAN
+     * Get Checksum for IBAN.
      *
      * @param string $bankCode
      * @param string $bankAccountNr
@@ -97,24 +99,30 @@ class Generator
      *
      * @return string
      */
-    public function getChecksum($bankCode = '', $bankAccountNr = '', $locale = '')
-    {
+    public function getChecksum(
+        $bankCode = '',
+        $bankAccountNr = '',
+        $locale = ''
+    ) {
         if (empty($locale)) {
             $locale = $this->locale;
         }
+
         if (empty($bankCode)) {
             $bankCode = $this->bankCode;
         }
+
         if (empty($bankAccountNr)) {
             $bankAccountNr = $this->bankAccountNr;
         }
 
-        return $this->getBban($bankCode, $bankAccountNr) . $this->getNumericLanguageCode($locale);
+        return $this->getBban($bankCode, $bankAccountNr).
+            $this->getNumericLanguageCode($locale);
     }
 
     /**
      * Generate the Numeric Language Code from Locale
-     * add präfix 00
+     * add präfix 00.
      *
      * Example: DE => 00314
      *
@@ -157,10 +165,10 @@ class Generator
             23 => 'W',
             24 => 'X',
             25 => 'Y',
-            26 => 'Z'
+            26 => 'Z',
         );
 
-        $numericLanguageCode = "";
+        $numericLanguageCode = '';
 
         // step over each char from language code
         foreach (str_split($locale) as $char) {
@@ -168,12 +176,12 @@ class Generator
             $numericLanguageCode .= array_search($char, $alphabet) + 9;
         }
 
-        return $numericLanguageCode . "00";
+        return $numericLanguageCode.'00';
     }
 
     /**
      * Get the Checkcipher like ISO 7064 per Modulo 97-10
-     * if value lower then 10 "0" append to left
+     * if value lower then 10 "0" append to left.
      *
      * @param string $checksum
      *
@@ -181,6 +189,6 @@ class Generator
      */
     public function getCheckcipher($checksum = '')
     {
-        return str_pad(98 - bcmod($checksum, 97), 2, "0", STR_PAD_LEFT);
+        return str_pad(98 - bcmod($checksum, 97), 2, '0', STR_PAD_LEFT);
     }
 }
