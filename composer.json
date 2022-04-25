@@ -1,5 +1,5 @@
 {
-    "name": "bmatzner/iban-generator",
+    "name": "mmockelyn/iban-generator",
     "description": "Generates IBAN code from bank code and bank account number",
     "keywords": ["IBAN", "SWIFT", "BIC", "BBAN", "SEPA"],
     "license": ["MIT"],
@@ -13,6 +13,11 @@
             "name": "Bernd Matzner",
             "email": "bernd@matznermatzner.de",
             "homepage": "http://matznermatzner.de/bernd"
+        }
+        ,
+        {
+            "name": "Mockelyn Maxime",
+            "email": "mmockelyn@gmail.com"            
         }
     ],
     "require": {
